@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Capture from '../views/clients/Capture.vue'
+import HomeView from '../views/HomeView.vue'
 import ReadAll from '../views/clients/ReadAll.vue'
+import ReadOne from '../views/clients/ReadOne.vue'
+import UpdateView from '../views/clients/UpdateView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,12 +10,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: Home
-    },
-    {
-      path: '/capture',
-      name: 'capture',
-      component: Capture,
+      component: HomeView
     },
     {
       path: '/clients',
@@ -22,25 +18,27 @@ const router = createRouter({
       component: ReadAll,
       children: [
         {
-          path: 'client/:id',
-          name: 'profile',
-          component: () => import('../views/clients/ReadOne.vue'),
+          path: '/:id',
+          name: 'client',
+          component: ReadOne,
+          children: [
+            {
+              path: '/profile',
+              name: 'update',
+              component: UpdateView
+            },
+          ]
         },
-        {
-          path: 'client/:id/profile',
-          name: 'update',
-          component: () => import('../views/clients/Update.vue'),
-        },
-      ],
+      ]
     },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
+    // {
+    //   path: '/about',
+    //   name: 'about',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import('../views/AboutView.vue')
+    // }
   ]
 })
 

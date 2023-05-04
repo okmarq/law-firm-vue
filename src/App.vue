@@ -1,11 +1,11 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import AbsoluteTop from './components/layouts/AbsoluteTop.vue'
-import Bottom from './components/layouts/Bottom.vue'
+import AbsoluteTopLayout from './components/layouts/AbsoluteTopLayout.vue'
+import BottomLayout from './components/layouts/BottomLayout.vue'
 </script>
 
 <template>
-  <AbsoluteTop />
+  <AbsoluteTopLayout />
 
   <header class="relative">
     <nav
@@ -17,5 +17,5 @@ import Bottom from './components/layouts/Bottom.vue'
 
   <RouterView />
 
-  <Bottom />
+  <BottomLayout />
 </template>

@@ -3,46 +3,26 @@ import axios from 'axios';
 const instance = axios.create({
     baseURL: 'https://law-firm-x.test/api/',
     withCredentials: false,
-	headers: {
-		Accept: 'application/json',
-		'Content-Type': 'application/json'
-	}
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+    }
 });
 
 export default {
-    getClients () {
-        try {
-            return instance.get('/clients')
-        } catch (error) {
-            console.error(error.toJSON())
-        }
+    getClients() {
+        return instance.get('/clients')
     },
-    getClientsByLastName (lastName) {
-        try {
-            return instance.get('/clients' + lastName)
-        } catch (error) {
-            console.error(error.toJSON())
-        }
+    getClientsByLastName(lastName) {
+        return instance.get('/clients/filter/' + lastName)
     },
-    getClient () {
-        try {
-            return instance.get('/clients')
-        } catch (error) {
-            console.error(error.toJSON())
-        }
+    getClient(id) {
+        return instance.get('/clients/' + id)
     },
-    saveClientProfile (payload) {
-        try {
-            return instance.post('/clients', payload)
-        } catch (error) {
-            console.error(error.toJSON())
-        }
+    saveClientProfile(payload) {
+        return instance.post('/clients', payload)
     },
-    updateClientProfile (payload) {
-        try {
-            return instance.post('/clients', payload)
-        } catch (error) {
-            console.error(error.toJSON())
-        }
+    updateClientProfile(payload) {
+        return instance.post('/clients', payload)
     },
 }
